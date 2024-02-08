@@ -1,4 +1,5 @@
-import { Image, TouchableOpacity } from "react-native";
+import { forwardRef } from "react";
+import { Image, TouchableOpacity, Text, View } from "react-native";
 import type { ImageProps, TouchableOpacityProps } from "react-native";
 
 interface ProductDataProps {
@@ -7,18 +8,30 @@ interface ProductDataProps {
   thumbnail: ImageProps;
 }
 
-interface PropductProps extends TouchableOpacityProps {
+interface ProductProps extends TouchableOpacityProps {
   data: ProductDataProps;
 }
 
-function Product(props: PropductProps) {
+const Product = forwardRef<TouchableOpacity, ProductProps>((props, ref) => {
   const { data, ...rest } = props;
 
   return (
-    <TouchableOpacity {...rest} className="w-full flex-row item-center pb-4">
-      <Image source={data.thumbnail} />
+    <TouchableOpacity
+      {...rest}
+      className="w-full flex-row item-center pb-4 gap-2"
+      ref={ref}
+    >
+      <Image source={data.thumbnail} className="w-20 h-20 rounded-md" />
+      <View className="flex-1 ml-1">
+        <Text className="text-slate-100 font-subtitle text-base flex-1">
+          {data.title}
+        </Text>
+        <Text className="text-slate-400 text-xs leading-5 mt-0.5">
+          {data.description}
+        </Text>
+      </View>
     </TouchableOpacity>
   );
-}
+});
 
 export { Product };
