@@ -2,7 +2,7 @@ import { FlatList, SectionList, Text, View } from "react-native";
 import { NativeWindStyleSheet } from "nativewind";
 import { Link } from "expo-router";
 
-import { CATEGORIES, MENU } from "@/fixture/products";
+import { CATEGORIES, MENU, ProductProps } from "@/fixture/products";
 
 import { Header } from "@/components/header/header";
 import { CategoryButton } from "@/components/category-button/category-button";
@@ -17,7 +17,7 @@ NativeWindStyleSheet.setOutput({
 export default function Home() {
   const cartStore = useCartStore();
   const [category, setCategory] = useState(CATEGORIES[0]);
-  const sectionListRef = useRef<SectionList>(null);
+  const sectionListRef = useRef<SectionList<ProductProps>>(null);
 
   const cartQuantityItems = cartStore.products.reduce((ammount, product) => {
     return ammount + product.quantity;

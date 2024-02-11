@@ -17,4 +17,17 @@ function add(products: ProductCartProps[], newProduct: ProductProps) {
   return [...products, { ...newProduct, quantity: 1 }];
 }
 
-export { add };
+function remove(products: ProductCartProps[], id: string) {
+  const updatedProducts = products.map((product) =>
+    product.id === id
+      ? {
+        ...product,
+        quantity: product.quantity > 1 ? product.quantity - 1 : 0,
+      }
+      : product
+  )
+
+  return updatedProducts.filter(product => product.quantity > 0);
+}
+
+export { add, remove };
