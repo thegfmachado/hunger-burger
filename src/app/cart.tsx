@@ -13,7 +13,7 @@ import { LinkButton } from "@/components/link-button/link-button";
 import { ProductCartProps, useCartStore } from "@/stores/cart-store";
 import { formatCurrency } from "@/utils/format-currency";
 
-const PHONE_NUMBER = '+5511986067486';
+const PHONE_NUMBER = '+5511000000000';
 
 export default function Cart() {
   const [address, setAddress] = useState('');
